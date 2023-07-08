@@ -1,0 +1,84 @@
+
+
+<main>
+
+        <% @articles.each do |article| %>
+        <section  class="container">
+
+                <% if article.image.attached?%>
+                <div class="img-container"> 
+                        <img src="<%=(url_for(article.image))%>">
+                </div>
+                <% end %>
+
+                <div class="content-divider">
+                        <span class="date"><%= article.created_at%></span>
+                        <div class="content">
+                                <div class="header">
+                                        <h1 class="has-text-danger"><%= article.name %></h1>
+                                       <% if article.author.present?%>
+                                        <h6>by <%= article.author %></h6>
+                                        <% end %>
+                                </div>
+                                <div class="body">
+                                </div>
+                        </div>
+                        <div class="control">
+                                 <button class="js-modal-trigger button" data-target=<%= article.id%>>
+                                Open Article
+                                </button>
+                        </div>
+                </div>
+
+        </section>
+
+<div id=<%= article.id%> class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      
+      <p class="modal-card-title">
+        <b><%= article.name %></b> 
+      </br>
+<% if article.author.present?%>
+       by <%= article.author %>
+<% end %>
+</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+   <%= article.body %>
+  
+    </section>
+    <footer class="modal-card-foot">
+      <button class='button '> <%= link_to "Edit", edit_article_path(article.id)%></button>
+        <button class='button is-danger'><%= link_to "Delete", article_path(article.id), data: {
+                                turbo_method: :delete,
+                                turbo_confirm: "Are you sure?"
+                                }%></button>
+
+    </footer>
+  </div>
+</div>
+
+
+
+        <% end %>
+
+
+
+
+</main>
+
+
+
+
+
+
+
+   
+ 
+
+   
+
+

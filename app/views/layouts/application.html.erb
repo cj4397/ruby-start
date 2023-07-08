@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+   
+  </head>
+
+  <body>
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+ 
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    
+      <%= link_to "Articles", root_path, class:[active_class(root_path), 'navbar-item']    %>
+
+    
+      
+ <%= link_to "Create Article", new_article_path, class:[active_class(new_article_path),'navbar-item'] %>
+     
+    </div>
+
+   
+  </div>
+</nav>
+
+    <%= yield %>
+
+  </body>
+     <%= javascript_importmap_tags %>
+
+
+
+
+</html>
